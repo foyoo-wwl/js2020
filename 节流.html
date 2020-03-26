@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function torottle(fn) {
+            let canRun = true
+            return function () {
+                if (!canRun) return;
+                canRun = false
+                setTimeout(() => {
+                    fn.apply(this, arguments)
+                    canRun = true
+                }, 500)
+            }
+        }
+
+        function sayHi(e) {
+            console.log(e.target.innerWidth, e.target.innerHeight)
+        }
+
+        window.addEventListener('resize', torottle(sayHi))
+    </script>
+</body>
+
+</html>

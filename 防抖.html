@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="ipt">
+    <button>fajkgjk</button>
+    <script>
+
+        function debonce(fn){
+            let timeout = null
+            return function(){
+                clearTimeout(timeout)
+                timeout = setTimeout(()=>{
+                    fn.apply(this)
+                },500)
+            }
+        }
+
+        function sayHi(arg){
+            console.log(123)
+        }
+
+        const inp = document.querySelector('#ipt')
+        inp.addEventListener('input',debonce(sayHi))
+    </script>
+</body>
+</html>
